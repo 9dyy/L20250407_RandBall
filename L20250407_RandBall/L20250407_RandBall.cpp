@@ -1,4 +1,6 @@
 #include <iostream>
+#include <random>
+#include <ctime>
 using namespace std;
 
 int main()
@@ -19,7 +21,10 @@ int main()
             break;
         while (true)
         {
-            int randNum = rand() % 52 + 1;
+            static std::mt19937 gen = std::mt19937((unsigned int)time(NULL));
+            static std::uniform_real_distribution<> dist(0, 1);
+            int randNum = dist(gen) * 52 + 1;
+
             if (basket[randNum] == false)
             {
                 basket[randNum] = true;
